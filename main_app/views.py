@@ -1,9 +1,9 @@
 from django.shortcuts import render
 
 bears = [
-    {'species': 'Black Bear', 'Latin Name': 'Ursus americanus', 'color': 'black'},
-    {'species': 'Polar Bear', 'Latin Name': 'Ursus arctos', 'color': 'white'},
-    {'species': 'Brown Bear', 'Latin Name': 'Ursus maritimus', 'color': 'brown'},
+    {'species': 'Black Bear', 'latin_name': 'Ursus americanus', 'color': 'black'},
+    {'species': 'Polar Bear', 'latin_name': 'Ursus arctos', 'color': 'white'},
+    {'species': 'Brown Bear', 'latin_name': 'Ursus maritimus', 'color': 'brown'},
 ]
 # Create your views here.
 def home(request):
