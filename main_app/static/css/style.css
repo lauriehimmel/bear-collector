@@ -1,15 +1,29 @@
-body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
-  
+/* * {
+  border: 1px solid red;
+} */
+
+@media (min-width: 769px) {
   main {
-    flex: 1 0 auto;
+    padding-top: 15rem;
   }
-  
-  footer.page-footer {
-    padding-top: 0;
-    text-align: right;
+}
+
+@media (min-width: 480px) {
+  main {
+    padding-top: 10rem;
   }
-  
+}
+
+@media (max-width: 480px) {
+  main {
+    padding-top: 10rem;
+  }
+}
+
+footer.page-footer {
+  text-align: center;
+  right: 0;
+  bottom: 3rem;
+  font-size: 0.8rem;
+  margin: 1rem;
+}
