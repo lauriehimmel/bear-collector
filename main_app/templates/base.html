@@ -21,10 +21,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText"></div>
         <span class="navbar-text ">
-          <a class="nav-link" href="/about">About</a>
+          <a class="nav-link" href="{% url 'about' %}">About</a>
         </span>
         <span class="navbar-text">
-          <a class="nav-link" href="/bears">View All Bears</a>
+          <a class="nav-link" href="{% url 'bears_create' %}">Collect A Bear</a>
+        </span>
+        <span class="navbar-text">
+          <a class="nav-link" href="{% url 'bears_index' %}">View All Bears</a>
+        </span>
         </span>
       </div>
     </nav>

@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 from .models import Bear
 
 home_images = [
@@ -28,3 +30,15 @@ def bears_detail(request, bear_id):
     return render(request, 'bears/bears_detail.html', {
         'bear': bear
     })
+
+class BearCreate(CreateView):
+    model = Bear
+    fields = '__all__'
+
+class BearUpdate(UpdateView):
+    model = Bear
+    fields = '__all__'
+
+class BearDelete(DeleteView):
+    model = Bear
+    success_url = '/bears'
