@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>{{bear.species}} Details</h1>
+
+<div class="card mb-3" style="max-width: 540px">
+  <div class="row g-0" style="height: 10rem">
+    <div class="col-md-4">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/7/71/2010-kodiak-bear-1.jpg"
+        class="img-fluid rounded-start"
+        style="height: 100%; object-fit: cover"
+      />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body" style="padding: auto">
+        <h5 class="card-title">{{ bear.species }}</h5>
+        <p class="card-text" style="margin: 0px">
+          Latin Name: {{ bear.latin_name }}
+        </p>
+        <p class="card-text" style="margin: 0px">Weight: {{ bear.weight }}</p>
+        <p class="card-text">Size: {{ bear.size }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

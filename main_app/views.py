@@ -1,10 +1,5 @@
 from django.shortcuts import render
-
-bears = [
-    {'species': 'Black Bear', 'latin_name': 'Ursus americanus', 'weight': '200-600 pounds','size': '5-6 feet', 'color': 'black', 'baby_picture': 'https://d.newsweek.com/en/full/2009842/black-bear.webp?w=900&f=b124736e21eb43fd3a79d3dee215633a'},
-    {'species': 'Polar Bear', 'latin_name': 'Ursus arctos', 'weight': '900-1600 pounds','size': '7.25-8 feet', 'color': 'white', 'baby_picture': 'https://www.usatoday.com/gcdn/media/USATODAY/USATODAY/2013/03/29/ap-orphaned-polar-bear-cub-16_9.jpg?width=1320&height=746&fit=crop&format=pjpg&auto=webp'},
-    {'species': 'Brown Bear', 'latin_name': 'Ursus maritimus', 'weight': '700 pounds','size': '5-8 feet', 'color': 'brown', 'baby_picture': 'https://nhpbs.org/wild/images/brownbearusfwstevehilldebrand1.jpg'},
-]
+from .models import Bear
 
 home_images = [
     {'image': 'https://www.boredpanda.com/blog/wp-content/uploads/2016/09/mother-bear-cubs-animal-parenting-21-57e3a2161d7f7__880.jpg'},
@@ -23,6 +18,13 @@ def about(request):
     return render(request, 'about.html')
 
 def bears_index(request):
+    bears = Bear.objects.all()
     return render(request, 'bears/bears_index.html', {
         'bears': bears
+    })
+
+def bears_detail(request, bear_id):
+    bear = Bear.objects.get(id=bear_id)
+    return render(request, 'bears/bears_detail.html', {
+        'bear': bear
     })
