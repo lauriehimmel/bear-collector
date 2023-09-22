@@ -26,6 +26,90 @@
     <a href="{% url 'bears_update' bear.id %}">Edit</a>
     <a href="{% url 'bears_delete' bear.id %}">Delete</a>
   </div>
+  
+  <div class="col s6">
+    <form action="{% url 'add_feeding' bear.id %}" method="POST">
+      {% csrf_token %}
+      <!-- Render the inputs -->
+      {{ feeding_form.as_p }}
+      <input type="submit" class="btn" value="Add Feeding">
+    </form>
+    <br>
+    {% if bear.fed_for_today %}
+      <div class="card-panel teal-text center-align">{{bear.species}} has been fed all meals for today</div>
+    {% else %}
+      <div class="card-panel red-text center-align">{{bear.species}} might be hungry</div>
+    {% endif %}
+    <table class="striped">
+      <thead>
+        <tr><th>Date</th><th>Meal</th></tr>
+      </thead>
+      <tbody>
+        {% for feeding in bear.feeding_set.all %}
+          <tr>
+            <td>{{feeding.date}}</td>
+            <td>{{feeding.get_meal_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+<div class="row">
+  <div class="col s6">
+    <h3>{{ bear.species }}'s Diet Includes:</h3>
+    {% if bear.food.count %}
+      {% for food in bear.food.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              {{ food.name }}
+            </span>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>Nothin' Yet!</h5>
+    {% endif %}
+  </div>
 </div>
 
+<div class="col s6">
+  <h3>What else does {{bear.species}} eat?</h3>
+    {% if food.count %}
+      {% for food in food.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              {{ food.name }}
+            </span>
+          </div>
+          <div class="card-action">
+            <form action="{% url 'assoc_food' bear.id food.id %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn">Add</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>{{bear.species}} already eats all food available</h5>
+    {% endif %}
+  </div>
+</div>
+</div>
+
+<script>
+  const dateEl = document.getElementById('id_date');
+  M.Datepicker.init(dateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
+  });
+
+  const selectEl = document.getElementById('id_meal');
+  M.FormSelect.init(selectEl);
+</script>
 {% endblock %}
