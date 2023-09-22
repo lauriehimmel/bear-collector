@@ -18,10 +18,10 @@ class Bear(models.Model):
   color = models.CharField(max_length=100)
 
   def __str__(self):
-        return f'{self.species}'
+      return f'{self.species}'
   
   def get_absolute_url(self):
-    return reverse('detail', kwargs={'bear_id': self.id})
+    return reverse('bears_detail', kwargs={'bear_id': self.id})
   
 class Feeding(models.Model):
   date = models.DateField()
